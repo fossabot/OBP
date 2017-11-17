@@ -1,0 +1,37 @@
+<div class="advanced-search-form">
+  <ba-card title="Search Criteria" baCardClass="with-scroll table-panel" showFooterMessages="true">
+    <form>
+      <div *ngFor="let o of fields" ngClass="property">
+        <div *ngIf="o === 'location'; then location else standardField"></div>
+
+        <ng-template #location>
+          <div class="form-group row">
+            <label for="lat" class="col-sm-2 form-control-label">Latitude</label>
+            <div class="col-sm-10">
+              <input type="number" id="{{o}}" class="form-control" name="lat" [(ngModel)]="model[o].lat" placeholder="Enter a value">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="lon" class="col-sm-2 form-control-label">Longitude</label>
+            <div class="col-sm-10"><input type="number" id="{{o}}" class="form-control" name="lon" [(ngModel)]="model[o].long" placeholder="Enter a value"></div>
+          </div>
+        </ng-template>
+
+        <ng-template #standardField>
+          <div class="form-group row">
+            <label for="{{o}}" class="col-sm-2 form-control-label">{{camelToReg(o)}}</label>
+            <div class="col-sm-10">
+              <auto-complete [type]="dateFields.indexOf(o) >= 0 ? 'date' : 'text'" cssClass="form-control" [inputId]="o" [name]="o" [(ngModel)]="model[o]" placeHolderText="Enter a value" [elementName]="o"></auto-complete>
+            </div>
+          </div>
+        </ng-template>
+
+      </div>
+        <div class="button-wrapper">
+          <button (click)="search()" type="submit" class="btn btn-primary btn-raised" title="Search">Search</button>
+        </div>
+    </form>
+  </ba-card>
+</div>
+
+<search-results [response]='response'></search-results>

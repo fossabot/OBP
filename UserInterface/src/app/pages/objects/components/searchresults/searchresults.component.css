@@ -1,0 +1,9 @@
+div.search-results .card-title {
+    opacity: 1;
+}
+
+div.search-results div.fadeIn {
+    animation-name: none;
+    -webkit-animation-name: none;
+    position: initial;
+}

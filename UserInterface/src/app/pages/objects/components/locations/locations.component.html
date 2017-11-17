@@ -1,0 +1,45 @@
+﻿
+<div class="report-properties">
+  <ba-card title="Location History" baCardClass="with-scroll" showFooterMessages="true">
+    <select  ngClass="selectpicker form-control rangbuttongrp" (change)="onChange($event.target.value)" >
+      <option *ngFor = 'let daterange of dateranges' [value]='daterange.value'>{{daterange.name}}
+      </option>
+    </select>
+    <!--    <div class="rangebuttongrp">
+          <div class="btn-group" ngbDropdown>
+            <button type="button" class="btn btn-primary btn-raised" ngbDropdownToggle>
+              Range
+            </button>
+            <ul class="dropdown-menu">
+              <ng-container *ngFor="let property of dateranges">
+                <li class="dropdown-item"  value="{{property.value}}" (click)="onChange(property.value)">{{property.name}}</li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>-->
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>lat/lon</th>
+        <th>Last Updated</th>
+        <th>Last Updated By</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let obj of response' ngClass="clickableRow">
+        <td> {{obj.id}}</td>
+        <td>
+          <div *ngIf="isValidLocation(obj.location)">{{obj.location.lat}}, {{obj.location.lon}}</div>
+        </td>
+        <td> {{obj.lastUpdated}}</td>
+        <td> {{obj.lastUpdatedBy}}</td>
+
+
+      </tr>
+      </tbody>
+    </table>
+  </ba-card>
+
+</div>
+

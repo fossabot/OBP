@@ -1,0 +1,11 @@
+<div class="auto-complete">    
+    <p-autoComplete [inputStyleClass]="cssClass" 
+                    [inputId]="inputId" 
+                    [(ngModel)]="value"
+                    [suggestions]="suggestions" 
+                    (completeMethod)="suggest()"
+                    [placeholder]="placeHolderText" 
+                    [type]="type"
+                    [disabled]="disabled"
+                    scrollHeight="100px"></p-autoComplete>
+</div>

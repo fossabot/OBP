@@ -1,0 +1,34 @@
+cache:
+  untracked: true
+build:
+  stage: build
+  script: "mvn install -B -DskipTests"
+  artifacts:
+    paths: 
+    - target/*.jar
+test:
+  script: "mvn test -B"
+integration-test:
+  script: "mvn failsafe:integration-test failsafe:verify -B"
+deploy:
+  stage: deploy
+  script:
+    - scp target/*.jar obp-05.esl.saic.com:~/deployments/${CI_PROJECT_NAME}.jar
+    - ssh -t -t obp-05.esl.saic.com "sudo systemctl restart ${CI_PROJECT_NAME}"
+  environment:
+    name: test
+  only:
+  - master
+
+deploy_demo:
+  stage: deploy
+  script:
+    - "docker build -t obp-03.esl.saic.com:5000/user-service ."
+    - "docker push obp-03.esl.saic.com:5000/user-service"
+    - "ssh obp-03.esl.saic.com 'docker-compose pull user-service'"
+    - "ssh obp-03.esl.saic.com 'docker-compose up -d user-service'"
+  environment:
+    name: test
+  when: manual
+  only:
+  - master

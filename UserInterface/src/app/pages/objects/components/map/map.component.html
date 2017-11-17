@@ -1,0 +1,8 @@
+<div id="mapWrapper" baCardBlur class="animated fadeIn card" zoom-in>
+    <div *ngIf="!fullScreen" class="card-header clearfix">
+        <h3 class="card-title" translate>Leaflet Maps <a *ngIf="!fullScreen" (click)="$event.stopPropagation(); openFullScreen(this.locationsString);" style="float:right;cursor:pointer">Open in new window</a></h3>
+    </div>
+    <div class="card-body">
+        <div id="map" class="leaflet-maps"></div>
+    </div>
+</div>

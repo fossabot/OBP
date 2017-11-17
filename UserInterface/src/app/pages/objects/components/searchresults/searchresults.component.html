@@ -1,0 +1,71 @@
+﻿<div class="search-results">
+  <ba-card *ngIf="response" title="Search Results" baCardClass="with-scroll table-panel">
+    <table class="table">
+      <thead>
+        <tr>
+          <th *ngIf="canEdit">Edit</th>
+          <th *ngIf="canDelete">Delete</th>
+          <th>Visualize</th>
+          <th>Category</th>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Function</th>
+          <th>Location</th>
+          <th>
+            <div class="checkbox abc-checkbox">
+              <!--
+                <input id="checkbox1" type="checkbox" name="all" (change)="isSelected = !isSelected; toggle(isSelected)" check-all>
+              <label for="checkbox1"></label>
+              -->
+            </div>
+          </th>
+          <th>
+            <div class="button-wrapper">
+              <button (click)='openMapSelected()' role="button" class="btn btn-primary btn-raised" title="Map Selected Objects"><i class="ion-ios-location"> Selected</i></button>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let obj of response' ngClass="clickableRow"
+            [routerLink]="['/pages/objects/' + obj.clazz.toLowerCase() + '/' + obj.id]">
+          <td *ngIf="canEdit">
+            <a [routerLink]="['/pages/objects/' + obj.clazz.toLowerCase() + '/' + obj.id]">
+              <i class="ion-edit" title="Edit"></i>
+            </a>
+          </td>
+          <td *ngIf="canDelete">
+            <a href="#" onclick="return false;" (click)="$event.stopPropagation(); deleteObject(obj); ">
+              <i class="ion-trash-a" title="Delete"></i>
+            </a>
+          </td>
+          <td> 
+            <a [routerLink]="['/pages/objects/visualize/' + obj.clazz.toLowerCase() + '/' + obj.id]">
+              <i class="ion-information" title="Visualize"></i>
+            </a>
+          </td>
+          <td> {{obj.clazz}}</td>
+          <td> {{obj.id}}</td>
+          <td> {{obj.name}}</td>
+          <td> {{obj.type}}</td>
+          <td> {{obj.function}}</td>
+          <td>
+            <div *ngIf="isValidLocation(obj.location)">{{obj.location.lat}}, {{obj.location.lon}}</div>
+          </td>
+          <td>
+            <div class="checkbox abc-checkbox">
+              <input id="checkbox2" type="checkbox" [(ngModel)]="obj.selected" value="{{obj.location}}" (click)="$event.stopPropagation()">
+              <label for="checkbox2"></label>
+            </div>
+          </td>
+          <td>
+            <div class="button-wrapper">
+              <button *ngIf="isValidLocation(obj.location)" (click)="$event.stopPropagation(); openMap(obj.location, obj.name, obj.type)" role="button" class="btn btn-primary btn-raised" title="Map Object"><i class="ion-ios-location"> Map</i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ba-card>
+</div>

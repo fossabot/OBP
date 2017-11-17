@@ -1,0 +1,25 @@
+<form id="searchForm" #searchForm="ngForm" (ngSubmit)="search(listFilter)">
+  <div class="search-form">
+    <ba-card title="Search Criteria" baCardClass="with-scroll table-panel">
+      <div class='row' style="min-width:360px">
+        <div class='col-md-3' style="margin-right:10px;">
+          <!-- Search Textbox -->
+          <div class="input-group input-group-sm input-group-transparent input-group-rounded">
+            <span class="input-group-addon" style="height:27px">
+              <i class="fa fa-search"></i>
+            </span>
+            <div class="search-auto-complete">
+              <auto-complete cssClass="form-control form-control-sm" name="searchTerms" inputId="searchTerms" [(ngModel)]="listFilter" elementName="name" placeHolderText="Enter search query"></auto-complete>
+            </div>
+          </div>
+        </div>
+        <div class='col-md-4' style="width:inherit">  
+          <div class="button-wrapper">
+            <button type="submit" class="btn btn-primary btn-raised" title="Search">Search</button>
+          </div>
+        </div>
+      </div>
+    </ba-card>
+  </div>
+</form>
+<search-results [response]='response'></search-results>

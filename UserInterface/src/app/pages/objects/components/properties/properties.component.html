@@ -1,0 +1,43 @@
+<ba-card title="Mapping" baCardClass="with-scroll" showFooterMessages="true">
+  <form>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Core</th>
+          <th *ngFor="let objectType of objectTypes">{{objectType}}</th>
+          <th>Currently Saved Settings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let property of properties">
+          <td>{{camelToReg(property.field)}}</td>
+          <td>{{property.dataType}}</td>
+          <td>
+            <div *ngIf="property.required">Yes</div>
+            <div *ngIf="!property.required">No</div>
+          </td>
+          <td>
+            <div *ngIf="property.core">Yes</div>
+            <div *ngIf="!property.core">No</div>
+          </td>
+
+          <td *ngFor="let objectType of objectTypes">
+            <input id="{{objectType}}_{{property.field}}" type="checkbox" checked *ngIf="property.classes.indexOf(objectType) > -1">
+            <input id="{{objectType}}_{{property.field}}" type="checkbox" *ngIf="property.classes.indexOf(objectType) <= -1">
+          </td>
+          <td>
+            {{property.classes}}
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <button (click)="saveProperties()" type="submit" class="btn btn-primary btn-raised">Save</button>
+    <button (click)="addProperty()" type="submit" class="btn btn-primary btn-raised">Add Property</button>
+  </form>
+</ba-card>

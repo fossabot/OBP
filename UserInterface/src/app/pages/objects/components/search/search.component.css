@@ -1,0 +1,29 @@
+/*thead {
+    color: #337AB7;
+}
+
+.clickableRow:hover {
+    background: lightgreen;
+}
+*/
+
+div.search-form {
+    position: relative;
+}
+
+div.search-form div.card {
+    min-width: 370px;
+}
+
+div.search-form div.card-body {
+    overflow-y: visible !important;
+}
+
+div.search-auto-complete {
+    width: 100%;
+}
+
+div.search-auto-complete input.ui-autocomplete-input {
+    border-radius: 0 5px 5px 0 !important;
+    width: 100% !important;
+}

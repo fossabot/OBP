@@ -1,0 +1,16 @@
+<div baCardBlur class="animated fadeIn card {{cardType}} {{baCardClass || ''}}" zoom-in>
+    <div *ngIf="title" class="card-header clearfix">
+        <h3 class="card-title" translate>{{title}}</h3>
+    </div>
+    <div class="card-body">
+        <ng-content></ng-content>
+    </div>
+</div>
+<div *ngIf="errorMessage !== ''" class="error-message" id="error-div">
+    <span class="error-label">!</span>
+    <span>{{ errorMessage }}</span>
+</div>
+<div *ngIf="infoMessage !== ''" class="info-message" id="info-div">
+    <span class="info-label">!</span>
+    <span>{{ infoMessage }}</span>
+</div>

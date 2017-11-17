@@ -1,0 +1,17 @@
+.nav.nav-tabs > li > span:hover{
+  cursor: pointer;
+}
+.nav.nav-tabs > li.active > span{
+  background-color: #1C2B36;
+  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+.nav.nav-tabs > li > span, .nav.nav-tabs > li {
+  padding: 10px;
+}
+.nav.nav-tabs > li {
+  padding-top: 12px;
+}
+.nav.nav-tabs{
+  border-bottom: 0px;
+
+}

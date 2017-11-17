@@ -1,0 +1,15 @@
+
+div.report-properties div.card-body {
+    overflow-y: visible !important;
+}
+
+.rangebuttongrp {
+ text-align: left;
+  margin-bottom: 5px;
+}
+
+.selectpicker{
+  width: 130px;
+  float: right;
+  margin-bottom: 5px;
+}

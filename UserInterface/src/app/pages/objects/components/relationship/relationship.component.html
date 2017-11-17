@@ -1,0 +1,23 @@
+<ba-card title="Establish Relationships" baCardClass="with-scroll" showFooterMessages="true" *ngIf="this.id">
+    Object type: <br/>
+    <select>            
+        <option *ngFor="let object of objects">{{object}}</option>
+    </select><br/><br/>
+    <!--
+    <label>First Object: </label>
+    <input type="text" name="name" [(ngModel)]="firstObject" value="{{this.id}}" disabled /><br/>
+    -->
+    <div class="search-auto-complete">
+        <label>Target Object: </label>
+        <auto-complete cssClass="form-control-sm" [(ngModel)]="secondObject" name="secondObject" inputId="secondObject" elementName="name" placeHolderText="Enter target object name"></auto-complete>
+    </div><br/>
+    Relationship: <br/>
+    <select name="name" [(ngModel)]="relationship">            
+        <option *ngFor="let relationship of relationships">{{relationship}}</option>
+    </select><br/><br/>
+    <button (click)="viewNode()" class="btn btn-primary btn-raised" title="View">View</button>
+    <button (click)="addLink()" class="btn btn-primary btn-raised" title="Add Relationship">Add Relationship</button>
+    <button (click)="removeLink()" class="btn btn-primary btn-raised btn-danger" title="Remove Relationship">Remove Relationship</button>
+</ba-card>
+<search-results [response]='response'></search-results><br/><br/>
+<div id="mygraph" class="mygraph"></div> 

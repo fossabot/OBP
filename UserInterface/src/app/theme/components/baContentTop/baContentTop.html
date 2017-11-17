@@ -1,0 +1,18 @@
+<div class="content-top clearfix">
+  <div *ngIf="errorMessage !== ''" class="error-message" id="error-div">
+    <span class="error-label">!</span>
+    <span>{{ errorMessage }}</span>
+  </div>
+  <div *ngIf="infoMessage !== ''" class="info-message" id="info-div">
+    <span class="info-label">!</span>
+    <span>{{ infoMessage }}</span>
+  </div>
+  <h1 class="al-title" translate>{{ activePageTitle }}</h1>
+
+  <ul class="breadcrumb al-breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/pages/dashboard" translate>{{'general.home'}}</a>
+    </li>
+    <li class="breadcrumb-item active" translate>{{ activePageTitle }}</li>
+  </ul>
+</div>

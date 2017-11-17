@@ -1,0 +1,9 @@
+FROM nginx
+RUN mkdir -p /var/www
+RUN mkdir -p /etc/pki/nginx
+COPY dist /var/www
+COPY conf/obp-03.key /etc/pki/nginx
+COPY conf/obp-03.crt /etc/pki/nginx
+COPY conf/dhparam-03.pem /etc/pki/nginx
+COPY conf/nginx.conf /etc/nginx/nginx.conf
+EXPOSE 443

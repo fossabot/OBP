@@ -1,0 +1,29 @@
+div.mynetwork {
+    opacity: 1;
+    height: 500px;
+    background-color: white;
+    width: auto;
+}
+div.allVisOptionsContainerSyle {
+    all: revert;
+    color: black;
+    width: auto;
+    height: 400px;
+    overflow: scroll;
+}
+div.vis-configuration-wrapper {
+    background-color: white;
+    width: auto;
+}
+
+#rightSideBar {
+    float: right;
+    width: 25%;
+    overflow: scroll;
+}
+
+#centerContent {
+    float: left;
+    width: 70%;
+}
+

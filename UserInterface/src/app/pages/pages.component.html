@@ -1,0 +1,21 @@
+<main [class.menu-collapsed]="isMenuCollapsed" baThemeRun>
+  <div class="additional-bg"></div>
+    <ba-sidebar></ba-sidebar>
+    <ba-page-top></ba-page-top>
+     <footer class="al-footer clearfix">
+        <div class="al-footer-main clearfix">
+        <div class="al-copy">&copy; <a href="http://saic.com" translate>SAIC</a> 2017</div>
+        <ul class="al-share clearfix">
+            <li><a href="https://www.facebook.com/SAICinc" target="_blank"><i class="socicon socicon-facebook"></i></a></li>
+            <li><a href="https://twitter.com/SAICinc" target="_blank"><i class="socicon socicon-twitter"></i></a></li>
+        </ul>
+        </div>
+    </footer>
+    <div class="al-main">
+        <div class="al-content">
+        <ba-content-top></ba-content-top>
+        <router-outlet></router-outlet>
+        </div>
+    </div>
+    <ba-back-top position="200"></ba-back-top>
+</main>

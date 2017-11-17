@@ -1,0 +1,53 @@
+cache:
+  untracked: true
+
+stages:
+  - pre-install
+  - install
+  - build
+  - deploy
+
+pre-install:
+  stage: pre-install
+  script:
+    - mkdir -p $HOME/.cache/yarn
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
+    - export PATH=$HOME/.yarn/bin:$PATH
+install:
+  stage: install
+  script:
+    - yarn
+
+build:
+  stage: build
+  script: "npm run build:ci"
+
+deploy:
+  stage: deploy
+  script:
+    - "rsync dist/ obp-05.esl.saic.com:/var/www -r --copy-links"
+  environment:
+    name: test
+  only:
+    - master
+
+deploy_demo:
+  stage: deploy
+  script:
+    - "node ./replace.env.ts"
+    - "npm run build:ci"
+    - "docker build -f Dockerfile.demoenv -t obp-03.esl.saic.com:5000/user-interface ."
+    - "docker push obp-03.esl.saic.com:5000/user-interface"
+    - "ssh obp-03.esl.saic.com 'docker-compose pull ui'"
+    - "ssh obp-03.esl.saic.com 'docker-compose up --no-deps -d ui'"
+  environment:
+    name: test
+  variables:
+    USER_SERVICES_ROOT: https://obp-03.esl.saic.com:8082
+    OMS_SERVICES_ROOT: https://obp-03.esl.saic.com:8081
+    SEARCH_SERVICES_ROOT: https://obp-03.esl.saic.com:8084
+    PROP_SERVICES_ROOT: https://obp-03.esl.saic.com:8085
+    API_ROOT: https://obp-03.esl.saic.com:8443
+  when: manual
+  only:
+    - master

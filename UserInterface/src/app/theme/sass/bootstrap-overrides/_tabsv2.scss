@@ -1,0 +1,189 @@
+/** Different tabs positions, which were removed from bootstrap */
+.tabs-below, .tabs-right, .tabs-left {
+  .nav-tabs {
+    border-bottom: 0;
+  }
+}
+
+.tabs-right, .tabs-left {
+  .nav-tabs {
+    min-width: 100px;
+  }
+  .tab-content {
+    width: calc(100% - 100px);
+    overflow-y: auto;
+  }
+}
+
+.tabs-right .tab-content {
+  margin-right: 100px;
+}
+
+.tabs-left .tab-content {
+  margin-left: 100px;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+}
+
+.tabs-below {
+  > .nav-tabs {
+
+    > li {
+      margin-top: -1px;
+      margin-bottom: 0;
+
+      > span {
+        &:hover, &:focus {
+        }
+      }
+    }
+    > .active span {
+      &, &:hover, &:focus {
+      }
+    }
+  }
+}
+
+.tabs-left, .tabs-right {
+  height: 100%;
+  > .nav-tabs > li {
+    float: none;
+    margin-bottom: 0;
+    > span {
+      min-width: 74px;
+      margin-right: 0;
+      margin-bottom: 3px;
+    }
+  }
+}
+
+.tabs-left > .nav-tabs {
+  float: left;
+  border-bottom-left-radius: 5px;
+  > li > span {
+    margin-right: -1px;
+
+    &:hover, &:focus {
+    }
+  }
+
+  > .active span {
+    &, &:hover, &:focus {
+    }
+  }
+}
+
+.tabs-right > .nav.nav-tabs {
+  float: right;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 5px;
+  > li > span {
+    &:hover, &:focus {
+    }
+  }
+
+  & > li:first-of-type span {
+    border-top-left-radius: 0;
+  }
+
+  > .active span {
+    &, &:hover, &:focus {
+    }
+  }
+}
+
+/** /Different tabs positions, which were removed from bootstrap */
+
+.nav-tabs > li.with-dropdown {
+  > span {
+    padding: 0;
+  }
+
+  .dropdown-toggle {
+    padding: 10px 15px;
+    display: inline-block;
+    cursor: pointer;
+  }
+}
+
+.tab-content {
+  padding: 15px 15px 5px 15px;
+  background: transparent;
+  color: $default-text;
+  .tab-pane p {
+    color: $default-text;
+  }
+}
+
+.nav.nav-tabs {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 1px solid transparent;
+  background-color: $primary-light;
+  span {
+    color: $label-text;
+    &:hover {
+      color: $label-text;
+    }
+  }
+  & > li > span {
+    margin-right: 0;
+    margin-bottom: 0;
+    border-radius: 0;
+    border: none;
+    &:hover {
+      border: none;
+      background-color: $primary-light;
+    }
+  }
+  & > li.active > span {
+    color: $label-text;
+    background-color: $primary;
+  }
+  > li:first-of-type span {
+    border-top-left-radius: 5px;
+  }
+  .dropdown-menu > li > span {
+    color: $dropdown-text;
+    &:hover {
+      color: $dropdown-text;
+    }
+  }
+}
+
+.blur {
+  .nav.nav-tabs {
+    background-color: rgba(0, 0, 0, 0.2);
+    span {
+      color: $default-text;
+      &:hover {
+        color: $default-text;
+      }
+    }
+    & > li > span:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+    & > li.active > span {
+      color: $default-text;
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+.nav .open > a, .nav .open > span:hover, .nav .open > span:focus {
+  background-color: transparent;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > span:hover, .nav-tabs > li.active > span:focus {
+  border: none;
+}
+
+

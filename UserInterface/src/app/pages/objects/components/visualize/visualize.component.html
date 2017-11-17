@@ -1,0 +1,77 @@
+<div id="centerContent">
+<ba-card title="Visualize Relationships">
+    <div id="mynetwork" class="mynetwork"></div> 
+</ba-card>
+</div>
+<div id="rightSideBar">
+<ba-card title="OMS Options">
+    <input id="nodeDepth" type="text" pattern="\d*"  [(ngModel)]="nodeDepth" (change)="changeNodeDepth()">
+    <label for="nodeDepth">Relationship Depth</label>
+    <br/>
+    Groups
+    <br/>
+    <ng-container *ngFor="let group of groups">
+        {{group}}
+        <select (change)="changeGroupShape(group,$event.target.value)">
+            <option *ngFor="let availableShape of availableShapes">{{availableShape}}</option>
+        </select>  
+        <select (change)="changeGroupColor(group,$event.target.value)">
+            <option *ngFor="let availableColor of availableColors">{{availableColor}}</option>
+        </select>  
+        <br/>
+    </ng-container>
+</ba-card> 
+<ba-card id="visJSOptionsCard" title="VisJS Options">
+    <!--
+        <select ng-model="selectedVisJSOption">
+        <option value="None">None</option>
+        <option value="All">All</option>
+        <option value="Simple">Simple</option>
+    </select>
+    -->
+    <div class="btn-group" ngbDropdown>
+        <button type="button" class="btn btn-primary btn-raised" ngbDropdownToggle>
+            {{selectedVisJSOption}}
+        </button>
+        <ul class="dropdown-menu">
+            <ng-container *ngFor="let visJSOption of visJSOptions">
+                <li class="dropdown-item" value="{{visJSOption.name}}" (click)="changeVisJSOption(visJSOption)">{{visJSOption.name}}</li>
+            </ng-container>
+        </ul>
+    </div>
+    <br/>
+    <br/>
+    <div [hidden]="!(selectedVisJSOption === 'None')">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+    <div [hidden]="!(selectedVisJSOption === 'All')" id="allVisOptionsContainer" class="allVisOptionsContainerSyle">
+    </div>
+    <div [hidden]="!(selectedVisJSOption === 'Simple')" >   
+        <input id="turnOnNodePhysicsCheckBox" type="checkbox" checked *ngIf="turnOnNodePhysics" (click)="changeTurnOnNodePhysics()">
+        <input id="turnOnNodePhysicsCheckBox" type="checkbox" *ngIf="!turnOnNodePhysics" (click)="changeTurnOnNodePhysics()">
+        <label for="turnOnNodePhysicsCheckBox">Node Physics Enabled</label>
+
+        <br/>
+        
+        <input id="turnOnHierarchyCheckBox" type="checkbox" checked *ngIf="turnOnHierarchy" (click)="changeTurnOnHierarchy()">
+        <input id="turnOnHierarchyCheckBox" type="checkbox" *ngIf="!turnOnHierarchy" (click)="changeTurnOnHierarchy()">
+        <label for="turnOnHierarchyCheckBox">Display in Hierarchy</label>
+
+        <br/>
+        
+        <input id="turnOnEdgeLabelsCheckBox" type="checkbox" checked *ngIf="turnOnEdgeLabels" (click)="changeTurnOnEdgeLabels()">
+        <input id="turnOnEdgeLabelsCheckBox" type="checkbox" *ngIf="!turnOnEdgeLabels" (click)="changeTurnOnEdgeLabels()">
+        <label for="turnOnEdgeLabelsCheckBox">Edge Labels Enabled</label>
+        
+        <br/>
+        
+        <input id="turnOnEdgeLabelAlignmentCheckBox" type="checkbox" checked *ngIf="turnOnEdgeLabelAlignment" (click)="changeTurnOnEdgeLabelAlignment()">
+        <input id="turnOnEdgeLabelAlignmentCheckBox" type="checkbox" *ngIf="!turnOnEdgeLabelAlignment" (click)="changeTurnOnEdgeLabelAlignment()">
+        <label for="turnOnEdgeLabelAlignmentCheckBox">Edge Label Alignment</label>
+
+    </div>
+</ba-card>
+</div>

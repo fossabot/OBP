@@ -1,0 +1,20 @@
+cache:
+  untracked: true
+build:
+  stage: build
+  script: "mvn install -B -DskipTests"
+  artifacts:
+    paths: 
+    - target/*.jar
+test:
+  script: "mvn test -B"
+integration-test:
+  script: "mvn failsafe:integration-test failsafe:verify -B"
+deploy:
+  stage: deploy
+  script:
+    - scp target/*.jar obp-05.esl.saic.com:~/deployments/${CI_PROJECT_NAME}.jar
+  environment:
+    name: test
+  only:
+  - master
